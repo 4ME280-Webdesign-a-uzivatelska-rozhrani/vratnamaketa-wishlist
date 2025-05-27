@@ -1,62 +1,90 @@
-[
-  {
-    "name": "Cosori TF101S Dual Blaze TwinFry - 10l modulární koš + kleště",
-    "link": "https://www.alza.cz/cosori-tf101s-dual-blaze-twinfry-10l-modularni-kos-kleste-d12457500.htm",
-    "price": "6 190 Kč",
-    "image": "https://image.alza.cz/products/COSHF85/COSHF85.jpg?width=800&height=800"
-  },
-  {
-    "name": "Čalouněná postel s úložným prostorem Pauline 180 x 200 cm růžová",
-    "link": "https://www.muzza.cz/product/calounena-postel-s-uloznym-prostorem-pauline-180-x-200-cm-ruzova/",
-    "price": "29 405,-",
-    "image": "https://www.muzza.cz/wp-content/uploads/2024/10/MIC_BF140_138_F1_LUPINE2-1N.jpg"
-  },
-  {
-    "name": "DJI Osmo Pocket 3 Standard Combo",
-    "link": "https://www.djishop.cz/dji-osmo-pocket-3-standard-combo-s8550.html?gad_campaignid=21510181377",
-    "price": "13 999,-",
-    "image": "https://www.djishop.cz/out/pictures/generated/product/1/1040_1040_75/dji-osmo-pocket-3-standard-combo_8550-5ad4fe52-618e-3456-6553-65af7773ad9d.png"
-  },
-  {
-    "name": "Masážní pistole VI Black - GymBeam",
-    "link": "https://gymbeam.cz/masazni-pistole-vi-black-gymbeam.html",
-    "price": "2 499,-",
-    "image": "https://gymbeam.cz/media/catalog/product/cache/bf5a31e851f50f3ed6850cbbf183db11/m/a/massage-gun-vi-black-gymbeam_1_.jpg"
-  },
-  {
-    "name": "SSD externí SanDisk Extreme Portable V2 2TB (SDSSDE61-2T00-G25)",
-    "link": "https://www.datart.cz/ssd-externi-sandisk-extreme-portable-v2-2tb-sdssde61-2t00-g25.html",
-    "price": "4 399,-",
-    "image": "https://www.datart.cz/foto/500/0/8/8/product_4465880.jpg"
-  },
-  {
-    "name": "WANBO T2 Max White v2",
-    "link": "https://www.alza.cz/wanbo-t2-max-white-v2-d12502234.htm",
-    "price": "4 454,-",
-    "image": "https://image.alza.cz/products/WAN005v2b/WAN005v2b.jpg?width=800&height=800"
-  },
-  {
-    "name": "Natural Paradise škrabadlo Magnolia XL",
-    "link": "https://www.zoohit.cz/shop/kocky/skrabadla_odpocivadla/strom_velky/180_cm/379670?activeVariant=379670.4",
-    "price": "3 479,-",
-    "image": "https://media.zooplus.com/bilder/3/400/86601_pla_kratzbaum_np_xl_standard_fg_2941_3.jpg"
-  },
-  {
-    "name": "Knihovna wahida 100 x 186 cm",
-    "link": "https://www.muzza.cz/product/knihovna-wahida-100-x-186-cm/",
-    "price": "27 040,-",
-    "image": "https://imagedelivery.net/pSWHEHcc9tS0C4jA469ppQ/www.muzza.cz/0746810.jpg/w=810"
-  },
-  {
-    "name": "vintage ivory floral embroidered corset sundress",
-    "link": "https://app.houseofcb.com/emmelina-white-floral-embroidered-corset-sundress",
-    "price": "6 514,-",
-    "image": "https://dsh6y5eym1jrl.cloudfront.net/_next/image?url=https%3A%2F%2Fd166chel5lrjm5.cloudfront.net%2Fimages%2Fdetailed%2F109%2Femmelina-10012e-1.jpg&w=3840&q=100"
-  },
-  {
-    "name": "Apple AirPods Max Hvězdně bílá (2024)",
-    "link": "https://www.alza.cz/apple-airpods-max-hvezdne-bila-2024-d12541392.htm",
-    "price": "13 490,-",
-    "image": "https://image.alza.cz/products/JA940i9b/JA940i9b.jpg?width=800&height=800"
-  }
-]
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>🎁 Wishlist</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    .item { border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; }
+    .item img { max-width: 150px; display: block; margin-bottom: 1rem; }
+    .item input { width: 100%; padding: 0.5rem; margin: 0.5rem 0; }
+    .item button { padding: 0.5rem 1rem; margin-right: 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <h1>🎁 Wishlist</h1>
+  <div id="wishlist"></div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBXOjdyvYK_0b7_fcFbSiKMn9Q7YcqDQ3o",
+      authDomain: "wishlist-8a342.firebaseapp.com",
+      databaseURL: "https://wishlist-8a342-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "wishlist-8a342",
+      storageBucket: "wishlist-8a342.firebasestorage.app",
+      messagingSenderId: "873404643943",
+      appId: "1:873404643943:web:3582e894090e4bfb89b2c2",
+      measurementId: "G-YZY1EQV8CW"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function loadWishlist() {
+      const container = document.getElementById('wishlist');
+      db.ref('wishlist').once('value', snapshot => {
+        const wishlist = snapshot.val() || [];
+        container.innerHTML = '';
+        wishlist.forEach((item, i) => {
+          const div = document.createElement('div');
+          div.className = 'item';
+          const isReserved = item.reserved_by && item.reserved_by.trim() !== '';
+          div.innerHTML = `
+            <h2>${item.name}</h2>
+            <img src="${item.image}">
+            <p><a href="${item.link}" target="_blank">Koupit</a></p>
+            <p><strong>Cena:</strong> ${item.price}</p>
+            <p><strong>Rezervoval:</strong> ${isReserved ? `<em>${item.reserved_by}</em> <button onclick="unreserve(${i})">Zrušit</button>` : '—'}</p>
+            ${!isReserved ? `
+              <input type="text" id="input-${i}" placeholder="Tvé jméno">
+              <button onclick="reserve(${i})">Rezervovat</button>
+            ` : ''}
+          `;
+          container.appendChild(div);
+        });
+        window.currentWishlist = wishlist;
+      });
+    }
+
+    function reserve(index) {
+      const name = document.getElementById(`input-${index}`).value.trim();
+      if (!name) return alert("Zadej jméno.");
+      window.currentWishlist[index].reserved_by = name;
+      db.ref('wishlist').set(window.currentWishlist).then(() => {
+        alert("Dárek rezervován!");
+        loadWishlist();
+      }).catch(err => {
+        alert("Nepodařilo se uložit.");
+        console.error(err);
+      });
+    }
+
+    function unreserve(index) {
+      if (!confirm("Opravdu chceš zrušit rezervaci?")) return;
+      window.currentWishlist[index].reserved_by = "";
+      db.ref('wishlist').set(window.currentWishlist).then(() => {
+        alert("Rezervace byla zrušena.");
+        loadWishlist();
+      }).catch(err => {
+        alert("Nepodařilo se uložit.");
+        console.error(err);
+      });
+    }
+
+    loadWishlist();
+  </script>
+</body>
+</html>
